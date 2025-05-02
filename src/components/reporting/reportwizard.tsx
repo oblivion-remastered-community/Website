@@ -47,7 +47,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
 
     const nextStage = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
-        if (status !== 'authenticated') return signIn('nexusmods', { redirect: false })
+        if (status !== 'authenticated') return signIn('discord', { redirect: true })
         const cur = stages.indexOf(stage);
         if (cur !== -1) setStage(stages[cur+1])
     }

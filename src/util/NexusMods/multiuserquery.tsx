@@ -38,10 +38,15 @@ interface IMultiUserResult {
     }[]
 }
 
-export default async function getMultipleUsers(ids: Set<number>) {
+export default async function getMultipleUsers(ids: Set<number>, retries: number = 0) {
     if (!ids.size) return {};
 
     const nexusQuery = multiUserQuery([...ids])
+    const maxRetries = 5
+
+    if (retries > maxRetries) {
+        throw new Error(`Attempted to get multiple users from Nexus ${retries} time(s) and failed`)
+    }
 
     const nexusReq = await fetch(v2API, {
         method: 'POST',
@@ -66,7 +71,8 @@ export default async function getMultipleUsers(ids: Set<number>) {
                 } 
                 else console.log('Unhandled GQL error', {error, newIds})                   
             }
-            if (retry) return getMultipleUsers(new Set(newIds));
+            retries++
+            if (retry) return getMultipleUsers(new Set(newIds), retries++);
             else throw new Error(`Unrecognised server error(s): ${response.errors?.map(e => e.message).join('\n')}`)
         }
         else return response.data;

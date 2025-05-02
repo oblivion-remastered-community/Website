@@ -6,10 +6,10 @@ import { JWT } from 'next-auth/jwt';
 
 const OAuthProviders: NextAuthOptions = {
     providers: [
-        // DiscordProvider({
-        //     clientId: process.env.DISCORD_ID!,
-        //     clientSecret: process.env.DISCORD_SECRET!
-        // }),
+        DiscordProvider({
+            clientId: process.env.DISCORD_ID!,
+            clientSecret: process.env.DISCORD_SECRET!
+        }),
         // GitHubProvider({
         //     clientId: process.env.GITHUB_ID!,
         //     clientSecret: process.env.GITHUB_SECRET!

@@ -1,13 +1,20 @@
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
-First, install dependencies:
+### Install dependencies:
 ```bash
 yarn install
 ```
 
-Then, run the development server:
+### Configure Environment
+Be sure to set the following environment variables:
+- `GITHUB_OWNER`
+- `GITHUB_NAME`
+- `GITHUB_REPO`
+- `DISCORD_ID`
+- `DISCORD_SECRET`
 
+### Run Server
 ```bash
 npm run dev
 # or
