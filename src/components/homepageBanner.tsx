@@ -1,5 +1,5 @@
 import { Orbitron } from 'next/font/google'
-import contributors from '../app/contributors/contributors.json'
+import contributors from '@/app/[locale]/contributors/contributors.json'
 import { ErrorWithHTTPCode } from '@/util/errors';
 
 const orb = Orbitron({ subsets: ['latin'] })

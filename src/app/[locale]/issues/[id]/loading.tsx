@@ -2,7 +2,7 @@ import BackButton from "@/components/backbutton";
 import { mdiArrowLeft } from "@mdi/js";
 import { Orbitron } from 'next/font/google'
 import Image from "next/image";
-import GitHub from '../../../components/sidebar/github-mark.svg'
+import GitHub from '../../../../components/sidebar/github-mark.svg'
 import CommentLoader from "@/components/comments/commentskeleton";
 
 const orb = Orbitron({ subsets: ['latin'] })

@@ -1,7 +1,10 @@
 import { Metadata } from 'next'
 import ClientLayout from './layoutClient'
 
-import './globals.css'
+import '../globals.css'
+import {hasLocale, NextIntlClientProvider} from "next-intl";
+import {routing} from "@/i18n/routing";
+import {notFound} from "next/navigation";
 
 export const metadata: Metadata = {
     title: {
@@ -38,12 +41,24 @@ export const metadata: Metadata = {
     }
 }
 
-export default function RootLayout({children}: {children: React.ReactNode}) {
+export default async function RootLayout({
+                                       children,
+                                       params
+}: {
+    children: React.ReactNode,
+    params: Promise<{locale: string}>
+}) {
+    const {locale} = await params
+    if (!hasLocale(routing.locales, locale)) {
+        notFound();
+    }
     return <html lang="en" className='bg-[#0b192b]'>
         <body>
+        <NextIntlClientProvider>
             <ClientLayout>
                 {children}
             </ClientLayout>
+        </NextIntlClientProvider>
         </body>
     </html>
 }

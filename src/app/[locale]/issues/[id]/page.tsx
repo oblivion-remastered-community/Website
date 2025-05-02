@@ -5,7 +5,7 @@ import { mdiArrowLeft, mdiCreation, mdiUpdate } from '@mdi/js';
 import StatusLabel from '@/components/statusLabel';
 import RelativeDate from '@/components/relativeDate';
 import IssueBody from '@/components/issueBody';
-import GitHub from '../../../components/sidebar/github-mark.svg'
+import GitHub from '../../../../components/sidebar/github-mark.svg'
 import Image from 'next/image';
 import { Metadata, ResolvingMetadata } from 'next'
 import IssueLabel from '@/components/issueLabel';

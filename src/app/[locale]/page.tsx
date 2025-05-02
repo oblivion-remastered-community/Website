@@ -1,5 +1,3 @@
-import { Icon } from '@mdi/react'
-import { mdiEarth, mdiListStatus, mdiBug, mdiMedal, mdiRocketLaunch, mdiMessage, mdiDownload, mdiHistory, mdiBriefcasePlus, mdiAlert } from '@mdi/js'
 import type { Metadata } from 'next'
 import { Orbitron, Roboto } from 'next/font/google'
 import Link from 'next/link'
