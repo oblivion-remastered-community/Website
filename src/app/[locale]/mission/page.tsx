@@ -12,11 +12,11 @@ const orb = Orbitron({ subsets: ['latin'] })
 export default function MissionPage() {
     return (
         <div>
-            <h1 className={orb.className}>Mission Statement</h1>
+            <h1>Mission Statement</h1>
             <div className='mb-4'>
                 The Starfield Community Patch (SFCP) project is a collective effort by mod authors and the wider player community of Starfield to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.
             </div>
-            <h2 className={orb.className}>Scope</h2>
+            <h2>Scope</h2>
             <div className='mb-4'>
             Fixes included in the patch are intended to correct bugs or errors in the base game, examples include:
             <ul>
@@ -35,7 +35,7 @@ export default function MissionPage() {
                 <li>Any tweaks that are not inkeeping with the original vision for game</li>
             </ul>
             </div>
-            <h2 className={orb.className}>Organisation</h2>
+            <h2>Organisation</h2>
             <div className='mb-4'>
             The Community Patch is intended be owned by the community, rather than an individual or team. This means it will be open to contributors and the responsibility for creating the latest build may shift and change over the life of the game.
             </div>
@@ -51,7 +51,7 @@ export default function MissionPage() {
             <div className='mb-4'>
             The Community Patch (in whole or in part) should never require payment to access, this includes any &quot;early access&quot; builds. The patch itself will allow donations and will earn reward points via the Nexus Mods Donation Points Scheme. These donations will be distributed (as fairly as possible) among the core contributors to the project. The details of which should be posted publicly for accountability.
             </div>
-            <h2 className={orb.className}>Contribute</h2>
+            <h2>Contribute</h2>
             <div className='mb-4'>
             You don&#39;t have to be a mod author to contribute to the Community Patch! There are a few different ways to do so.
             <ul>

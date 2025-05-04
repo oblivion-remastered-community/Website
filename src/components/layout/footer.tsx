@@ -1,10 +1,13 @@
 import Stripes from "./stripes";
+import {useTranslations} from "next-intl";
 
 export default function Footer() {
+    const t = useTranslations('Footer')
+
     return (
-        <footer className='text-center text-gray-400'>
-            <Stripes />
-            <div className='pt-8'>The Starfield Community Patch is not affiliated with Bethesda Game Studios.</div>
+        <footer className='text-center text-gray-700 bg-parchment-dark'>
+            {/*<Stripes />*/}
+            <div className='pt-8'>{t('affiliation')}</div>
         </footer>
     )
 }

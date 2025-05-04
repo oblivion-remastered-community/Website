@@ -4,6 +4,7 @@ import GitHub from '@/components/sidebar/github-mark-white.svg';
 import Bethesda from '@/components/sidebar/Bethesda.svg';
 import Image from 'next/image';
 import { Metadata } from 'next';
+import {useTranslations} from "next-intl";
 
 const orb = Orbitron({ subsets: ['latin'] });
 
@@ -13,63 +14,67 @@ export const metadata: Metadata = {
 }
 
 export default function DownloadPage() {
+    const t = useTranslations('Download')
+
     return (
         <div>
             <div className='mb-4'>
-                <h1 className={orb.className} id='PC'>Download on PC</h1>
-                <p>The latest version of the Community Patch will be available on Nexus Mods, Bethesda.net or GitHub as the official mirrors. </p>
+                <h1 id='PC'>{t('downloadOnPc')}</h1>
+                <p></p>
                 <br />
-                <p>You may be able to download the patch from other sources, but these sources are not considered official and you should exercise caution when downloading them.</p>
+                <p>{t('availability')}</p>
                 <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
-                    <b>Please note:</b> The Starfield Community Patch will always be available for free. If you are being prompted to pay for it, it is very likely that you are being scammed. 
-                    The ZIP folder should only contain ESM, BA2, INI and text format files. Any other files (especially EXEs) should be considered malicious. 
+                    <b>{t('pleaseNote')}</b> {t('pricing')}
                 </div>
                 <p>Selected your preferred download location below:</p>
                 <div className='grid lg:grid-cols-3 grid-cols-1 gap-3 py-8'>
                 <a href='https://nexusmods.com/starfield/mods/1' target='_blank'>
-                    <button className='w-full'>
+                    <button className='w-full' disabled={true}>
                         <Image
                             src={NexusMods}
-                            alt={'Nexus Mods'}
+                            alt={t('nexusMods')}
                             width={24}
                             height={24}
                             className='inline mr-2'
                         />
-                        Nexus Mods
+                        {t('comingSoon')}
                     </button>
                 </a>
                 <a href='https://github.com/Starfield-Community-Patch/Starfield-Community-Patch/releases' target='_blank'>
-                    <button className='w-full'>
+                    <button className='w-full' disabled={true}>
                         <Image
                             src={GitHub}
-                            alt={'GitHub'}
+                            alt={t('github')}
                             width={24}
                             height={24}
                             className='inline mr-2'
                         />
-                        GitHub
+                        {t('comingSoon')}
                     </button>
                 </a>
                 <a href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'>
-                    <button className='w-full'>
+                    <button className='w-full' disabled={true}>
                         <Image
                             src={Bethesda}
-                            alt={'Bethesda'}
+                            alt={`${t('creations')} ${t('tbd')}`}
                             width={24}
                             height={24}
                             className='inline mr-2 bg-white'
                         />
-                        Bethesda.net
+                        {t('tbd')}
                     </button>
                 </a>
                 </div>
-                <h2 className={orb.className} id='InstallPC'>Installation on PC</h2>
+                <h2 id='InstallPC'>{t('pcInstallationHeader')}</h2>
                 <p>
-                    It is recommended you install the Community Patch with a mod manager to avoid any confusion on where to place the files. 
-                    The recommended applications are <a href='https://nexusmods.com/site/mods/1' target='_blank'>Vortex</a> or <a href='https://www.nexusmods.com/skyrimspecialedition/mods/6194' target='_blank'>Mod Organizer 2 (Steam only)</a>. Install the ZIP file with your mod manager and ensure that Starfield Community Patch.esm is enabled in the load order section.
+                    {t.rich('modManagerInstructions', {
+                        vortexLink: (chunks) => <a href='https://nexusmods.com/site/mods/1' target='_blank'>{chunks}</a>,
+                        mo2Link: (chunks) => <a href='https://www.modorganizer.org/' target='_blank'>{chunks}</a>
+                    })}
                     <br /> <br/>
-                    To install the patch manually, extract the contents of ZIP file into the Starfield game folder (where Starfield.exe is stored). To verify it is installed properly, check the Data subfolder includes <code>StarfieldCommunityPatch.esm</code>.
-                    With the files installed, next navigate to <code>%localappdata%\Starfield</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* StarfieldCommunityPatch.esm</code> below the main Starfield plugin and any DLCs.
+                    {t.rich('manualInstallationInstructions', {
+                        code: (chunks) => <code>{chunks}</code>
+                    })}
                 </p>
                 <h3 className={orb.className+' mt-4'} id='PCBethesda'>Bethesda.net on PC</h3>
                 <p>
@@ -78,23 +83,25 @@ export default function DownloadPage() {
             </div>
             <hr />
             <div className='pt-4 mt-6'>
-                <h1 className={orb.className} id='Xbox'>Download on Xbox Series X/S</h1>
+                <h1 id='Xbox'>Download on Xbox Series X/S</h1>
                 <div className='mb-24'>
-                    This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to &quot;Mods&quot; at the main menu, sign in and then search for &quot;Communtiy Patch&quot;. Follow the prompts on the screen to install it into your game.
+                    <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
+                        <b>{t('pleaseNote')}</b> {t('xboxDisclaimer')}
+                    </div>
                     <a href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'>
-                    <button className='w-full'>
+                    <button className='w-full' disabled={true}>
                         <Image
                             src={Bethesda}
-                            alt={'Bethesda'}
+                            alt={`${t('creations')} ${t('tbd')}`}
                             width={24}
                             height={24}
                             className='inline mr-2 bg-white'
                         />
-                        Bethesda.net
+                        {t('tbd')}
                     </button>
                 </a>
                 </div>
-                {/* <h2 className={orb.className} id='InstallXbox'>Installation on Xbox Consoles</h2> */}
+                {/* <h2 id='InstallXbox'>Installation on Xbox Consoles</h2> */}
             </div>
         </div>
     )

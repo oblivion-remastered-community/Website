@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export default function IssuePage() {
     return (
         <div>
-            <h1 className={orb.className}>Community Patch Issue List</h1>
+            <h1>Community Patch Issue List</h1>
             <Suspense>
             <IssueTable />
             </Suspense>

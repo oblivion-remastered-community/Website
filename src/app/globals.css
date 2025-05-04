@@ -5,10 +5,21 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+  .kingthings-petrock {
+    font-family: var(--font-kingthings-petrock);
+
+    @apply tracking-wide;
+  }
+}
+
 :root {
   --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --background-rgb: 208, 202, 195;
+  --background-dark-rgb: 157, 152, 147;
+  --background-start-rgb: 208, 202, 195;
+  --background-end-rgb: 208, 202, 195;
   --stripe-blue-rgb: 47, 76, 121;
   --stripe-orange-rgb: 224, 98, 54;
   --stripe-red-rgb: 200, 35, 55;
@@ -18,13 +29,19 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+    --background-rgb: 208, 202, 195;
+    --background-dark-rgb: 157, 152, 147;
+    --background-start-rgb: 208, 202, 195;
+    --background-end-rgb: 208, 202, 195;
     --stripe-blue-rgb: 47, 76, 121;
     --stripe-orange-rgb: 224, 98, 54;
     --stripe-red-rgb: 200, 35, 55;
     --stripe-yellow-rgb: 215, 171, 97;
   }
+}
+
+html {
+  background-color: rgb(var(--background-dark-rgb));
 }
 
 body {
@@ -40,6 +57,7 @@ body {
 h1, h2 {
   color: black;
   margin-bottom: 1rem;
+  font-family: var(--font-kingthings-petrock);
 }
 
 h1 {
@@ -208,6 +226,14 @@ caption {
   background: #f1f1f1;
   padding: 10px 0;
   margin-bottom: 1em;
+}
+
+.bg-parchment {
+  background: rgb(var(--background-rgb));
+}
+
+.bg-parchment-dark {
+  background: rgb(var(--background-dark-rgb));
 }
 
 tr,td,th {

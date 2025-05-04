@@ -17,7 +17,7 @@ export default async function JoinPage() {
     // if (process.env.NODE_ENV === 'production') return <p>Coming soon!</p>
 
     return <div>
-        <h1 className={orb.className}>Join the Starfield Community Patch Team!</h1>
+        <h1>Join the Starfield Community Patch Team!</h1>
         <div>
             The SFCP operates out of GitHub. In order to join you&lsquo;ll need a GitHub account. If you don&lsquo;t have one you can register <a href='https://github.com/join' target='_blank'>here</a>.
             The email address entered into the form below <b>must</b> match the one used for your GitHub account or you won&lsquo;t receive the invitation.

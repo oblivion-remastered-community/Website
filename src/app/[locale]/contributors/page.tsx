@@ -28,7 +28,7 @@ interface IContributor {
 export default function ContributorsPage() {
     return (
         <div>
-            <h1 className={orb.className}>Contributors</h1>
+            <h1>Contributors</h1>
             <Suspense fallback={'Loading...'}>
             <div className='grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-1'>
                 { contributors.map((c, i) => (<ContributorTile key={`${c.name}-${i}`} contributor={c} />)) }

@@ -13,7 +13,7 @@ export default function ChangelogPage() {
 
     return (
         <div>
-            <h1 className={orb.className}>Changelog</h1>
+            <h1>Changelog</h1>
         </div>
     )
 }

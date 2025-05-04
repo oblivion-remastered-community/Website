@@ -5,6 +5,7 @@ import '../globals.css'
 import {hasLocale, NextIntlClientProvider} from "next-intl";
 import {routing} from "@/i18n/routing";
 import {notFound} from "next/navigation";
+import {kingthingsPetrockFont} from "@/fonts/KingthingsPetrock";
 
 export const metadata: Metadata = {
     title: {
@@ -52,7 +53,7 @@ export default async function RootLayout({
     if (!hasLocale(routing.locales, locale)) {
         notFound();
     }
-    return <html lang="en" className='bg-[#0b192b]'>
+    return <html className={`${kingthingsPetrockFont.variable}`} lang="en">
         <body>
         <NextIntlClientProvider>
             <ClientLayout>

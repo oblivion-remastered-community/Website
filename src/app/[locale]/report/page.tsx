@@ -22,11 +22,11 @@ export default async function ReportPage() {
 
     return (
         <div>
-            <h1 className={orb.className}>Report an Issue</h1>
+            <h1>Report an Issue</h1>
             <Suspense fallback={<p>Loading...</p>}>
                 {(!showCountdown || !isProduction) && <ReportWizard repo={repoInfo} />}
                 {showCountdown && <div className='text-center border-2 border-black p-4'>
-                    <h2 className={orb.className}>Starfield launches in:</h2>
+                    <h2>Starfield launches in:</h2>
                     <CountDownTimer date={1693526400000} />
                     <p>Come back once you&#39;ve played the game to report issues!</p>
                 </div>}

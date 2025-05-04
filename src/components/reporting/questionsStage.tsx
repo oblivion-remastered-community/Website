@@ -80,7 +80,7 @@ export default function QuestionStage(props: IStageProps) {
         <div>
             <div>
                 <div className="my-4">
-                <h2 className={orb.className}>Title</h2>
+                <h2>Title</h2>
                 <input 
                     type='text' 
                     placeholder="e.g. New Atlantis Misaligned Plants" 
@@ -92,7 +92,7 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr />
                 <div className="my-4">
-                <h2 className={orb.className}>Summary</h2>
+                <h2>Summary</h2>
                 <textarea 
                     rows={3} 
                     className="w-full mx-auto p-1" 
@@ -104,7 +104,7 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr />
                 <div className="my-4">
-                <h2 className={orb.className}>Details</h2>
+                <h2>Details</h2>
                 <textarea 
                     rows={3} 
                     className="w-full mx-auto p-1" 
@@ -116,7 +116,7 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr />
                 <div  className="my-4">
-                <h2 className={orb.className}>Game Version</h2>
+                <h2>Game Version</h2>
                 <input 
                     type='text' 
                     placeholder="e.g. 1.7.36.0" 
@@ -131,14 +131,14 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr/>
                 <div className="my-4">
-                <h2 className={orb.className}>Language</h2>
+                <h2>Language</h2>
                     <select value={body.questions?.['Language']?.answer} onChange={(e) => updateQuestion(e, 'Language', 11)}>
                         {gameLocales.map(l => (<option key={l}>{l}</option>))}
                     </select>
                 </div>
                 <hr />
                 <div  className="my-4" onChange={(e) => updateQuestion(e, 'New Game', 20)}>
-                <h2 className={orb.className}>Have you recreated this issue on a new game?</h2>
+                <h2>Have you recreated this issue on a new game?</h2>
                 <div>
                     <input value='Yes' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'Yes'} onChange={() => null} /> Yes
                 </div>
@@ -149,7 +149,7 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr />
                 <div  className="my-4">
-                <h2 className={orb.className}>What are the steps to recreate it?</h2>
+                <h2>What are the steps to recreate it?</h2>
                 <textarea 
                     rows={5} 
                     className="w-full mx-auto p-1" 

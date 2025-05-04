@@ -38,7 +38,7 @@ export default function PageSearchResults(props: SearchProps) {
 
     return (
         <div>
-            <h1 className={orb.className}>Search Results</h1>
+            <h1>Search Results</h1>
             <Suspense>
                 <IssueSearchResults query={decodedProps} />
             </Suspense>

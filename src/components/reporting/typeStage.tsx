@@ -22,7 +22,7 @@ export default function TypeStage(props: IStageProps) {
 
     return (
         <div>
-            <h2 className={orb.className}>Which category represents the issue you are reporting?</h2>
+            <h2>Which category represents the issue you are reporting?</h2>
             <p>If your issue falls into more than one category, pick the one you feel is most revelant.</p>
             <div onChange={onChangeType}>
                 {typeOptions}

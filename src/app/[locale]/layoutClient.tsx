@@ -27,7 +27,7 @@ export default function ClientLayout({
   return <>
     <Header toggleNav={toggleNav} />
     <SessionProvider>
-    <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] w-full bg-white text-black lg: pt-16'>
+    <div className='grid grid-cols-1 lg:grid-cols-[30%_70%] w-full bg-parchment text-black lg: pt-16'>
       <nav>
         <Sidebar showMobile={showNav} toggleNav={toggleNav} />
       </nav>

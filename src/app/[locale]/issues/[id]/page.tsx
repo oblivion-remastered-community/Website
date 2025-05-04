@@ -66,9 +66,9 @@ export default async function IssueView(props: IIssueViewProps) {
 
     return (
         <div>
-            <h1 className={`font-orbitron`}>Issue #{props.params.id}</h1>
+            <h1>Issue #{props.params.id}</h1>
             <BackButton href='/issues' label="Back to Issue List" icon={mdiArrowLeft} />
-            <h2 className={`mt-4 font-orbitron`}>{issue?.title}</h2>
+            <h2 className={`mt-4`}>{issue?.title}</h2>
             <div className="grid grid-flow-row grid-cols-3 mb-2 gap-1 lg:gap-4 border-2 border-black py-2 px-8 bg-[#2f4dd445]">
                 <div className='flex items-center'><StatusLabel label={issue?.state!}/></div>
                 <div>

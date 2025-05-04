@@ -16,7 +16,7 @@ export default function VASCOTip(props : PropsWithChildren<{ side?: 'left' | 'ri
                 <Image src={VASCO} alt='VASCO' className='' />
             </div> : null}
             <div className='px-4 col-span-3'>
-            <h2 className={orb.className}>VASCO says</h2>
+            <h2>VASCO says</h2>
             </div>
             <div className='col-span-2 row-start-2'>
                 <div className={`${sbClass} relative border-black border-2 p-2 bg-white m-2 px-4`}>

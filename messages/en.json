@@ -1,5 +1,49 @@
 {
   "Common": {
     "patchName": "Oblivion Remastered Community Patch"
+  },
+  "Home": {
+    "welcomeMessage": "Welcome adventurer!",
+    "about": "The Oblivion Remastered Community Patch (ORCP) project is a collective effort by mod authors and the wider player community of Oblivion Remastered to fix bugs, errors and other inconsistencies present in the game. This includes tweaks, typos and other changes that may have been missed (or not yet released) by the developers. The overall goal is to improve the vanilla experience for all players.",
+    "downloadForPC": "Download (PC)",
+    "notAvailableForXbox": "ORCP is not yet available on Xbox/PS5",
+    "orcpNeedsYou": "The Community Patch needs you!",
+    "helpWantedMessage": "Calling all heroes! We need your help to find, document and fix bugs as part of this project. If you've spotted something weird in Oblivion Remastered and can reproduce it on a new save please report an issue."
+  },
+  "Sidebar": {
+    "home": "Home",
+    "missionStatement": "Mission Statement",
+    "download": "Download",
+    "changelog": "Changelog",
+    "issues": "Issue List",
+    "report": "Report a Bug",
+    "contributors": "Contributors",
+    "joinTheTeam": "Join the Team",
+    "nexusMods": "Nexus Mods",
+    "creations": "Creations",
+    "forums": "Forums",
+    "discord": "Discord",
+    "github": "GitHub",
+    "signOut": "Sign Out",
+    "signIn": "Sign In"
+  },
+  "Footer": {
+    "affiliation": "The Oblivion Remastered Community Patch is not affiliated with Bethesda Game Studios."
+  },
+  "Download": {
+    "downloadOnPc": "Download on PC",
+    "pleaseNote": "Please note:",
+    "availability": "The latest version of the Community Patch will be available on Nexus Mods or GitHub as the official mirrors.",
+    "pricing": "The Oblivion Remastered Community Patch will always be available for free. If you are being prompted to pay for it, it is very likely that you are being scammed. The ZIP folder should only contain ESP, BSA, INI, PAK and text format files. Any other files (especially EXEs) should be considered malicious.",
+    "nexusMods": "Nexus Mods",
+    "github": "GitHub",
+    "creations": "Creations",
+    "comingSoon": "Coming Soon",
+    "tbd": "To be Determined",
+    "pcInstallationHeader": "Installation on PC",
+    "modManagerInstructions": "                    It is recommended you install the Community Patch with a mod manager to avoid any confusion on where to place the files. \n                    The recommended applications are <vortexLink>Vortex</vortexLink> or <mo2Link>Mod Organizer 2 (Steam only)</mo2Link>. Install the ZIP file with your mod manager and ensure that OblivionCommunityPatch.esp is enabled in the load order section.\n",
+    "manualInstallationInstructions": "To install the patch manually, extract the contents of ZIP file into the Oblivion Remastered Data folder (<code>Oblivion Remastered\\OblivionRemastered\\Content\\Dev\\ObvData\\Data</code>). To verify it is installed properly, check the Data subfolder includes <code>OblivionCommunityPatch.esp</code>.\nWith the files installed, next navigate to <code>Oblivion Remastered\\OblivionRemastered\\Content\\Dev\\ObvData\\Data</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* OblivionCommunityPatch.esp</code> below the main Oblivion plugin and any DLCs.\n",
+    "xboxInstructions": "This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to &quot;Mods&quot; at the main menu, sign in and then search for \"Communtiy Patch\". Follow the prompts on the screen to install it into your game.",
+    "xboxDisclaimer": "As of right now (and possibly forever) there is no mod support from Bethesda Game Studios or Virtuos. As a result, there is no way to upload mods for download on Xbox."
   }
 }

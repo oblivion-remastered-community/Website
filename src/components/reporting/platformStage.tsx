@@ -38,11 +38,11 @@ export default function PlatformStage(props: IStageProps) {
 
     return (
         <div>
-            <h2 className={orb.className}>Which platform are you playing on?</h2>
+            <h2>Which platform are you playing on?</h2>
             <div onChange={onChangePlatform} className="mb-8">
                 {platformOptions}
             </div>
-            <h2 className={orb.className}>Which DLC(s) do you have installed?</h2>
+            <h2>Which DLC(s) do you have installed?</h2>
             <div className="mb-8">
                 {dlcOptions}
             </div>

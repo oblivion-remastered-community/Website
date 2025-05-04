@@ -10,7 +10,7 @@ const orb = Orbitron({ subsets: ['latin'] })
 export default function LoadingIssue() {
     return (
         <div>
-            <h1 className={orb.className}>Issue #</h1>
+            <h1>Issue #</h1>
             <BackButton href='/issues' label="Back to Issue List" icon={mdiArrowLeft} />
             <div className='animate-pulse my-2'><div className='w-1/3 h-8 opacity-50 bg-gray-500 rounded' /></div>
             <div className="grid grid-flow-row grid-cols-3 mb-2 gap-1 lg:gap-4 border-2 border-black py-2 px-8 bg-[#2f4dd445]">
@@ -58,7 +58,7 @@ export default function LoadingIssue() {
                 </div>
                 <div className='col-start-3 animate-pulse'><div className='w-16 h-4 opacity-50 bg-gray-500 rounded inline-block object-center' /></div>
             </div>
-            <h2 id='comments' className={`mt-4 `+orb.className}>Comments (0)</h2>
+            <h2 id='comments' className={`mt-4 `}>Comments (0)</h2>
             <CommentLoader />
             <CommentLoader />
             <CommentLoader />

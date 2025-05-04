@@ -22,10 +22,10 @@ export default async function HomePageBanner() {
 
     // Probably want to use suspense to load in the totals from an external file/DB
     return (
-        <div className={`my-4 h-60 w-auto bg-[url('/hero-art.webp')] bg-cover bg-top rounded-t-md grid grid-cols-2 grid-`}>
-        <div className='lg:mt-10 text-center pt-5 pr-5 text-white text-xl lg:text-2xl col-start-2 font-bold'>
-          <span className={orb.className}>The Community Patch includes {fixesCount.toLocaleString()} fixes from {totalContributors.toLocaleString()} contributors!</span>
-        </div>
+        <div className={`my-4 h-96 w-auto bg-[url('/hero-art.jpg')] bg-cover bg-top rounded-t-md grid grid-cols-2 grid-`}>
+        {/*<div className='lg:mt-10 text-center pt-5 pr-5 text-white text-xl lg:text-2xl col-start-2 font-bold'>*/}
+        {/*  <span className={orb.className}>The Community Patch includes {fixesCount.toLocaleString()} fixes from {totalContributors.toLocaleString()} contributors!</span>*/}
+        {/*</div>*/}
       </div>
     )
 }
