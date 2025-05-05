@@ -1,12 +1,21 @@
 import { ErrorWithHTTPCode } from "../errors";
 import { octokit } from "./common";
 
-export async function inviteTeamMember(...params: Parameters<typeof octokit['orgs']['createInvitation']>): Promise<ReturnType<typeof octokit['orgs']['createInvitation']>> {
-    const { GITHUB_TOKEN } = process.env;
-    if (!GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+type InvitationRequest = {
+    email: string
+    teamIds: number[]
+}
+
+export async function inviteTeamMember(invitationRequest: InvitationRequest): Promise<any> {
 
     try {
-        return await octokit.orgs.createInvitation(...params)
+        const app = await octokit()
+        return await app.orgs.createInvitation({
+            org: 'oblivion-remastered-community',
+            email: invitationRequest.email,
+            role: "direct_member",
+            team_ids: invitationRequest.teamIds
+        })
     }
     catch(err) {
         const httpErr = (err as ErrorWithHTTPCode)

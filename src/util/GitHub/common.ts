@@ -1,12 +1,72 @@
+import {createAppAuth} from "@octokit/auth-app";
+
 export const gitHubGQL: string = 'https://api.github.com/graphql';
 export type IGitHubIssueStates = 'OPEN' | 'CLOSED';
 import { ErrorWithHTTPCode } from '../errors';
-import { Octokit } from '@octokit/rest';
+import {Octokit} from "@octokit/rest";
 
-export const octokit = new Octokit({
-    auth: `Bearer ${process.env.GITHUB_TOKEN}`,
-    userAgent: 'Starfield-Community-Patch/Website',
-});
+let octokitApp: Octokit | null
+
+export const octokit = async () => {
+    const settings = getGithubSettings()
+
+    if (octokitApp === null || octokitApp === undefined) {
+        octokitApp = new Octokit({
+            authStrategy: createAppAuth,
+            auth: {
+                appId: settings.GITHUB_APP_ID,
+                privateKey: settings.GITHUB_PRIVATE_KEY,
+                installationId: settings.GITHUB_INSTALLATION_ID
+            }
+        })
+    }
+
+    return octokitApp
+}
+
+type GithubSettings = {
+    GITHUB_APP_ID: string
+    GITHUB_PRIVATE_KEY: string
+    GITHUB_INSTALLATION_ID: number
+}
+
+export const getGithubSettings = (): GithubSettings => {
+    return {
+        GITHUB_APP_ID: getGithubAppId(),
+        GITHUB_INSTALLATION_ID: parseInt(getGithubInstallationId()),
+        GITHUB_PRIVATE_KEY: getGithubPrivateKey()
+    }
+}
+
+const getGithubAppId = () => {
+    const { GITHUB_APP_ID } = process.env
+
+    if (GITHUB_APP_ID === undefined) {
+        throw new Error('GITHUB_APP_ID environment variable is missing')
+    }
+
+    return GITHUB_APP_ID
+}
+
+const getGithubPrivateKey = () => {
+    const { GITHUB_PRIVATE_KEY } = process.env
+
+    if (GITHUB_PRIVATE_KEY === undefined) {
+        throw new Error('GITHUB_PRIVATE_KEY environment variable is missing')
+    }
+
+    return GITHUB_PRIVATE_KEY
+}
+
+const getGithubInstallationId = () => {
+    const { GITHUB_INSTALLATION_ID } = process.env
+
+    if (GITHUB_INSTALLATION_ID === undefined) {
+        throw new Error('GITHUB_INSTALLATION_ID environment variable is missing')
+    }
+
+    return GITHUB_INSTALLATION_ID
+}
 
 export interface IGitHubPageInfo {
     startCursor: string;
@@ -38,13 +98,33 @@ export interface GitHubTeam {
     parent: any | null;
 }
 
-export async function fetchRequest(TOKEN: string, query: { query: string, variables: any }, options?: NextFetchRequestConfig) {
+const getAppToken = async () => {
+    const { GITHUB_APP_ID, GITHUB_PRIVATE_KEY, GITHUB_INSTALLATION_ID } = process.env;
+
+    if (GITHUB_APP_ID && GITHUB_PRIVATE_KEY && GITHUB_INSTALLATION_ID) {
+        const appAuth = createAppAuth({
+            appId: GITHUB_APP_ID,
+            privateKey: GITHUB_PRIVATE_KEY
+        })
+        const auth = await appAuth({
+            type: 'installation',
+            installationId: GITHUB_INSTALLATION_ID
+        })
+
+        return auth.token
+    } else {
+        throw new Error(`either GITHUB_APP_ID or GITHUB_PRIVATE_KEY or GITHUB_INSTALLATION_ID was not set`)
+    }
+}
+
+export async function fetchRequest(query: { query: string, variables: any }, options?: NextFetchRequestConfig) {
+    const token = await getAppToken();
     const result = await fetch(gitHubGQL, {
         method: 'POST',
         body: JSON.stringify(query),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: options ?? { revalidate: 0 }
     })

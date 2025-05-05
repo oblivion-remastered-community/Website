@@ -35,7 +35,7 @@ export default function ReviewStage(props: IReviewProps) {
             form.append('labels', labels.filter(l => l !== undefined).map(l => (l as IGitHubLabel).id).join(','))
             const params = new URLSearchParams()
             params.append('repo_id', repoId)
-            const url = 'api/issue/create?'+params.toString()
+            const url = '/api/issue/create?'+params.toString()
             const submit = await fetch(url, {
                 method: 'POST',
                 body: form

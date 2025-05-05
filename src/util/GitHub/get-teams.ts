@@ -1,12 +1,10 @@
 import { ErrorWithHTTPCode } from "../errors";
 import { octokit } from "./common";
 
-export async function getTeams(org: string, page: number = 0): Promise<ReturnType<typeof octokit['teams']['list']>> {
-    const { GITHUB_TOKEN } = process.env;
-    if (!GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
-
+export async function getTeams(org: string, page: number = 0): Promise<any> {
     try {
-        return await octokit.teams.list({
+        const app = await octokit()
+        return await app.teams.list({
             per_page: 100,
             page,
             org,
@@ -14,6 +12,7 @@ export async function getTeams(org: string, page: number = 0): Promise<ReturnTyp
     }
     catch(err) {
         const httpErr = (err as ErrorWithHTTPCode)
+        console.error(httpErr)
         throw httpErr;
     }
 }

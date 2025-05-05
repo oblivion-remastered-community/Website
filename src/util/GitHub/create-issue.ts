@@ -1,6 +1,8 @@
 import { mutation } from 'gql-query-builder';
 import { fetchRequest, gitHubGQL } from "./common";
 import { ErrorWithHTTPCode } from '../errors';
+import {App} from "octokit";
+import {createAppAuth} from "@octokit/auth-app";
 
 export interface IGitHubAddIssueResponse {
     data: {
@@ -39,23 +41,20 @@ const addIssueQuery = (repositoryId: string, title: string, body: string, labelI
 }, undefined, { operationName: 'createNewIssue' });
 
 export async function createIssue(repoId: string, title: string, body: string, labelIds: string[], reference: string): Promise<any> {
-    const { GITHUB_TOKEN } = process.env;
+        const query = addIssueQuery(repoId, title, body, labelIds.map(l => l.trim()), reference);
 
-    if (!GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+        console.log('Create issue', { query: query.query, input: JSON.stringify(query.variables)})
 
-    const query = addIssueQuery(repoId, title, body, labelIds.map(l => l.trim()), reference);
+        console.log('Stringified', JSON.stringify(query))
 
-    console.log('Create issue', { query: query.query, input: JSON.stringify(query.variables)})
+        try {
+            const req: IGitHubAddIssueResponse = await fetchRequest(query, { revalidate: 0 })
+            return req;
+        }
+        catch(err) {
+            const httpErr = (err as ErrorWithHTTPCode)
+            throw httpErr;
+        }
 
-    console.log('Stringified', JSON.stringify(query))
-
-    try {
-        // throw new ErrorWithHTTPCode(400, 'Access denied')
-        const req: IGitHubAddIssueResponse = await fetchRequest(GITHUB_TOKEN, query, { revalidate: 0 })
-        return req;
-    }
-    catch(err) {
-        const httpErr = (err as ErrorWithHTTPCode)
-        throw httpErr;
     }
 }

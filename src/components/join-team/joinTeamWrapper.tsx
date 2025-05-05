@@ -14,8 +14,7 @@ export default async function JoinTeamWrapper() {
     catch(err) {
         return <>
             <br />
-            <h2>Error getting team list:</h2>
-            <p>{err instanceof Error ? err.message : String(err)}</p>
+            <h2>Error getting team list</h2>
         </>
     }
 }
