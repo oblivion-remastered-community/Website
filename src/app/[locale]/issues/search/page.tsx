@@ -38,10 +38,10 @@ export default function PageSearchResults(props: SearchProps) {
 
     return (
         <div>
-            <h1>Search Results</h1>
-            <Suspense>
-                <IssueSearchResults query={decodedProps} />
-            </Suspense>
+            {/*<h1>Search Results</h1>*/}
+            {/*<Suspense>*/}
+            {/*    <IssueSearchResults query={decodedProps} />*/}
+            {/*</Suspense>*/}
         </div>
     )
 }
