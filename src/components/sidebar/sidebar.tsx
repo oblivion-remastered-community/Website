@@ -40,9 +40,11 @@ export default function Sidebar(props: ISidebarProps) {
             {/*<Link href='/download' onClick={() => toggleNav(false)}><NavButton icon={mdiDownload} label={t('download')} /></Link>*/}
             {/*<Link href='/changelog' onClick={() => toggleNav(false)}><NavButton icon={mdiHistory} label={'changelog'} /></Link>*/}
             <hr />
-            <Link href='/issues' onClick={() => toggleNav(false)}><NavButton icon={mdiListStatus} label={'issues'} /></Link>
-            <Link href='/report' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={t('report')} /></Link>
-            <Link href='/contributors' onClick={() => toggleNav(false)}><NavButton icon={mdiMedal} label={t('contributors')} /></Link>
+            <Link href='/#' onClick={() => toggleNav(false)}><NavButton icon={mdiListStatus} label={t('issues')} /></Link>
+            {/*<Link href='/issues' onClick={() => toggleNav(false)}><NavButton icon={mdiListStatus} label={t('issues')} /></Link>*/}
+            {/*<Link href='/report' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={t('report')} /></Link>*/}
+            <Link href='#' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={t('report')} /></Link>
+            {/*<Link href='/contributors' onClick={() => toggleNav(false)}><NavButton icon={mdiMedal} label={t('contributors')} /></Link>*/}
             <Link href='/join-team' onClick={() => toggleNav(false)}><NavButton icon={mdiBriefcasePlus} label={t('joinTheTeam')} /></Link>
             <hr />
             {/*<Link href='https://nexusmods.com/starfield/mods/1' target='_blank'><NavButton customIcon={NexusModsMono} label={`${t('nexusMods')} ↗`} /></Link>*/}
