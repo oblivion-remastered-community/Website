@@ -41,20 +41,18 @@ const addIssueQuery = (repositoryId: string, title: string, body: string, labelI
 }, undefined, { operationName: 'createNewIssue' });
 
 export async function createIssue(repoId: string, title: string, body: string, labelIds: string[], reference: string): Promise<any> {
-        const query = addIssueQuery(repoId, title, body, labelIds.map(l => l.trim()), reference);
+    const query = addIssueQuery(repoId, title, body, labelIds.map(l => l.trim()), reference);
 
-        console.log('Create issue', { query: query.query, input: JSON.stringify(query.variables)})
+    console.log('Create issue', { query: query.query, input: JSON.stringify(query.variables) })
 
-        console.log('Stringified', JSON.stringify(query))
+    console.log('Stringified', JSON.stringify(query))
 
-        try {
-            const req: IGitHubAddIssueResponse = await fetchRequest(query, { revalidate: 0 })
-            return req;
-        }
-        catch(err) {
-            const httpErr = (err as ErrorWithHTTPCode)
-            throw httpErr;
-        }
-
+    try {
+        const req: IGitHubAddIssueResponse = await fetchRequest(query, { revalidate: 0 })
+        return req;
+    }
+    catch (err) {
+        const httpErr = (err as ErrorWithHTTPCode)
+        throw httpErr;
     }
 }

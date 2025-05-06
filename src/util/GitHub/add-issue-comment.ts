@@ -46,7 +46,7 @@ export async function addIssueComment(commentId: string, body: string, reference
     const query = addCommentQuery(commentId, body, reference);
 
     try {
-        const req: IGitHubAddCommentResponse = await fetchRequest(GITHUB_TOKEN, query, { revalidate: 0 })
+        const req: IGitHubAddCommentResponse = await fetchRequest(query, { revalidate: 0 })
         return req;
     }
     catch(err) {
