@@ -49,7 +49,7 @@ export default function Sidebar(props: ISidebarProps) {
             {/*<Link href='https://creations.bethesda.net/en/starfield/details/a11a0cdf-5abb-4a59-9e12-e261e5aae8d5/Starfield_Community_Patch' target='_blank'><NavButton customIcon={Bethesda} label={`${t('creations')} ↗`} /></Link>*/}
             <Link href='https://forums.nexusmods.com/forum/9064-remastered-discussion/' target='_blank'><NavButton icon={mdiMessage} label={`${t('forums')} ↗`} /></Link>
             <Link href='https://discord.gg/d3TRtvJ9fD' target='_blank'><NavButton customIcon={Discord} label={`${t('discord')} ↗`} /></Link>
-            <Link href='https://github.com/oblivion-remastered-modding' target='_blank'><NavButton customIcon={GitHub} label={`${t('github')} ↗`} /></Link>
+            <Link href='https://github.com/oblivion-remastered-community' target='_blank'><NavButton customIcon={GitHub} label={`${t('github')} ↗`} /></Link>
             <div className='mt-4'>
             {status === 'authenticated' ?
             <div className=''>
