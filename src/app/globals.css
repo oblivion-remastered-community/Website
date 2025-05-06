@@ -124,6 +124,17 @@ button.secondary:hover {
   color: rgb(var(--stripe-orange-rgb));
 }
 
+button.discord {
+  background: #4752C4;
+  background: linear-gradient(90deg, rgba(71, 82, 196, 1) 100%, rgba(101, 113, 243, 1) 100%);
+  border: 1px solid #000;
+  color: #e0e3ff;
+}
+
+button.discord:hover {
+  box-shadow: 0 2px 9px #060a0b6b;
+}
+
 .sb-l::before, .sb-l::after, .sb-r:after, .sb-r::before {
   content: "";
   width: 0px;

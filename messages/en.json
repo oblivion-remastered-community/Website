@@ -58,7 +58,8 @@
     "submitting": "Submitting...",
     "invitationSent": "Invitation Sent",
     "sendInvitation": "Send Invitation",
-    "errorOccurred": "An error has occurred. Please contact the site owner with the following information:"
+    "errorOccurred": "An error has occurred. Please contact the site owner with the following information:",
+    "joinUsOnDiscord": "Join us on Discord!"
   },
   "Report": {
     "title": "Title",

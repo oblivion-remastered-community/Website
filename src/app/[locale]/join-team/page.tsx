@@ -2,6 +2,7 @@ import { Orbitron } from 'next/font/google'
 import type { Metadata } from 'next'
 import JoinTeamWrapper from '@/components/join-team/joinTeamWrapper'
 import {getTranslations} from "next-intl/server";
+import Image from 'next/image';
 
 export const metadata: Metadata = {
     title: 'Join the team',
@@ -32,6 +33,19 @@ export default async function JoinPage() {
             {/*    githubLink: (chunks) => <a href='https://github.com/join' target='_blank'>{chunks}</a>,*/}
             {/*    b: (chunks) => <b>{chunks}</b>*/}
             {/*})}*/}
+        </div>
+
+        <div className={'grid justify-items-center'}>
+            <button className='lg:w-1/2 sm:w-full discord'>
+                <Image
+                    src={'/Discord-Symbol-White.svg'}
+                    alt={t('github')}
+                    width={24}
+                    height={24}
+                    className='inline mr-2'
+                />
+                {t('joinUsOnDiscord')}
+            </button>
         </div>
         {/*<JoinTeamWrapper />*/}
     </div>
