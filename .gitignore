@@ -149,3 +149,6 @@ fabric.properties
 .ionide
 .vscode
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains+all,visualstudiocode
+app.zip
+deploy/
+

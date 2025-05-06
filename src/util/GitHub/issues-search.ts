@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { GitHubIssueFilter, IGitHubPageInfo, gitHubGQL, octokit } from "./common";
+import {GitHubIssueFilter, IGitHubPageInfo, gitHubGQL, octokit, getAppToken} from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import { IGitHubIssueList } from './issues-list';
 
@@ -93,9 +93,9 @@ const gitHubSearchIssuesQuery = (q: string, filters?: GitHubIssueFilter ) => que
 });
 
 export async function searchIssues(searchTerms: string|undefined, filter?: GitHubIssueFilter, sort?: any): Promise<IGitHubIssueSearchResponse> {
-    const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
+    const { GITHUB_OWNER, GITHUB_NAME } = process.env;
 
-    if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+    if (!GITHUB_NAME || !GITHUB_OWNER) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
     // NEED TO BUILD THIS UP TO SEND!
     let queryString = `repo:${GITHUB_OWNER}/${GITHUB_NAME} is:issue ${searchTerms}`;
@@ -110,6 +110,7 @@ export async function searchIssues(searchTerms: string|undefined, filter?: GitHu
     // console.log('Search issue terms', {searchTerms, queryString})
 
     const gitHubQuery = gitHubSearchIssuesQuery(queryString, filter)
+    const token = await getAppToken()
 
     // console.log('Issue Search', gitHubQuery);
 
@@ -118,7 +119,7 @@ export async function searchIssues(searchTerms: string|undefined, filter?: GitHu
         body: JSON.stringify(gitHubQuery),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: { revalidate: 1 }
     });

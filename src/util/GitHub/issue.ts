@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { IGitHubIssueStates, gitHubGQL } from "./common";
+import {IGitHubIssueStates, gitHubGQL, getAppToken} from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import getMultipleUsers, { INexusModsUser } from '../NexusMods/multiuserquery';
 import { IGitHubLabel } from './get-repo-labels';
@@ -104,11 +104,12 @@ const singleIssueQuery = (id: number, name: string, owner: string) => query({
 })
 
 export async function getSingleIssue(id: number): Promise<IGitHubSingleIssueResponse> {
-    const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
+    const { GITHUB_OWNER, GITHUB_NAME } = process.env;
 
-    if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+    if (!GITHUB_NAME || !GITHUB_OWNER) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
     const query = singleIssueQuery(id, GITHUB_NAME, GITHUB_OWNER);
+    const token = await getAppToken()
 
     // console.log(query)
 
@@ -119,7 +120,7 @@ export async function getSingleIssue(id: number): Promise<IGitHubSingleIssueResp
         body: JSON.stringify(query),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: { revalidate: 10 }
     })

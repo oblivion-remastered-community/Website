@@ -1,7 +1,8 @@
 import { Orbitron } from "next/font/google";
-import VASCOTip from "./vascotip";
+import AdoringFanTip from "./adoringFanTip";
 import { ChangeEvent, FormEvent } from "react";
 import { IReportBody } from "./reportwizard";
+import {useTranslations} from "next-intl";
 
 const orb = Orbitron({ subsets: ['latin'] })
 
@@ -27,6 +28,7 @@ const gameLocales = [
 
 export default function QuestionStage(props: IStageProps) {
     const { next, prev, body, setBody } = props;
+    const t = useTranslations('Report')
     
     const isBodyComplete = () => {
         let result = true
@@ -80,10 +82,10 @@ export default function QuestionStage(props: IStageProps) {
         <div>
             <div>
                 <div className="my-4">
-                <h2>Title</h2>
+                <h2>{t('title')}</h2>
                 <input 
                     type='text' 
-                    placeholder="e.g. New Atlantis Misaligned Plants" 
+                    placeholder={t('titlePlaceholder')}
                     className="mx-auto p-1 w-2/3" 
                     onChange={updateTitle} 
                     value={body.title} 
@@ -92,31 +94,31 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
                 <hr />
                 <div className="my-4">
-                <h2>Summary</h2>
+                <h2>{t('summary')}</h2>
                 <textarea 
                     rows={3} 
                     className="w-full mx-auto p-1" 
                     onChange={updateSummary} 
                     value={body.summary} 
                     maxLength={2048} 
-                    placeholder="Describe the issue as clearly and concisely as possible"
+                    placeholder={t('summaryPlaceholder')}
                 />
                 </div>
                 <hr />
                 <div className="my-4">
-                <h2>Details</h2>
+                <h2>{t('details')}</h2>
                 <textarea 
                     rows={3} 
                     className="w-full mx-auto p-1" 
                     onChange={updateDetails} 
                     value={body.details} 
                     maxLength={2048} 
-                    placeholder="Provide any technical details such as item IDs, quest IDs and stage numbers"
+                    placeholder={t('detailsPlaceholder')}
                 />
                 </div>
                 <hr />
                 <div  className="my-4">
-                <h2>Game Version</h2>
+                <h2>{t('gameVersion')}</h2>
                 <input 
                     type='text' 
                     placeholder="e.g. 1.7.36.0" 
@@ -125,31 +127,31 @@ export default function QuestionStage(props: IStageProps) {
                     value={body.questions?.['Game Version']?.answer} 
                     maxLength={25}
                 />
-                <VASCOTip side='right'>
-                    You can learn how to find your game version <a href='https://modding.wiki/en/starfield/users/find-version' target='_blank'>here</a>.
-                </VASCOTip>
+                <AdoringFanTip side='right'>
+                    {t('adoringFanTip')}
+                </AdoringFanTip>
                 </div>
                 <hr/>
                 <div className="my-4">
-                <h2>Language</h2>
+                <h2>{t('language')}</h2>
                     <select value={body.questions?.['Language']?.answer} onChange={(e) => updateQuestion(e, 'Language', 11)}>
                         {gameLocales.map(l => (<option key={l}>{l}</option>))}
                     </select>
                 </div>
                 <hr />
                 <div  className="my-4" onChange={(e) => updateQuestion(e, 'New Game', 20)}>
-                <h2>Have you recreated this issue on a new game?</h2>
+                <h2>{t('newGameQuestion')}</h2>
                 <div>
-                    <input value='Yes' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'Yes'} onChange={() => null} /> Yes
+                    <input value='Yes' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'Yes'} onChange={() => null} /> {t('yes')}
                 </div>
                 <div>
-                    <input value='No' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'No'} onChange={() => null}/> No
+                    <input value='No' name='New Game' type='radio' checked={body.questions?.['New Game']?.answer === 'No'} onChange={() => null}/> {t('no')}
                 </div>
-                {body.questions?.['New Game']?.answer === 'No' ? warning('If you cannot explain how to recreate the issue from a new game, the community may not be able to identify and fix it.') : null}
+                {body.questions?.['New Game']?.answer === 'No' ? warning(t('noNewGameWarning')) : null}
                 </div>
                 <hr />
                 <div  className="my-4">
-                <h2>What are the steps to recreate it?</h2>
+                <h2>{t('stepsToReproduce')}</h2>
                 <textarea 
                     rows={5} 
                     className="w-full mx-auto p-1" 
@@ -159,8 +161,8 @@ export default function QuestionStage(props: IStageProps) {
                 </div>
             </div>
             <div className="flex flex-row justify-between my-2 mx-8">
-                <button className="secondary" onClick={prev}>Back</button>
-                <button onClick={next} disabled={!isBodyComplete()}>Next</button>
+                <button className="secondary" onClick={prev}>{t('back')}</button>
+                <button onClick={next} disabled={!isBodyComplete()}>{t('next')}</button>
             </div>
         </div>
     )

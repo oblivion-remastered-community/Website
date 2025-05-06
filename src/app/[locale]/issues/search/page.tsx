@@ -29,7 +29,7 @@ export async function generateMetadata({ params, searchParams }:SearchProps, par
 
     return {
         title: `Search Results${query ? ` for "${query}"` : ''}`,
-        description: `Results for issues reported for the Starfield Community Patch ${localised.length ? ` filtered by ${localised}` : ''}`
+        description: `Results for issues reported for the Oblivion Remastered Community Patch ${localised.length ? ` filtered by ${localised}` : ''}`
     }
 }
 

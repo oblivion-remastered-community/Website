@@ -2,6 +2,7 @@
 
 import { ChangeEvent, Suspense, useCallback, useRef, useState } from "react";
 import { GitHubTeam } from "@/util/GitHub/common";
+import {useTranslations} from "next-intl";
 
 interface IProps {
     teams: GitHubTeam[];
@@ -10,6 +11,7 @@ interface IProps {
 
 
 export default function JoinTeamForm(props: IProps) {
+    const t = useTranslations('JoinTeam')
     const { teams } = props;
 
     const formRef = useRef<HTMLFormElement>(null);
@@ -63,7 +65,7 @@ export default function JoinTeamForm(props: IProps) {
             try {
                 await result.json().then(r => setStatusText(r.status));
             } catch (err) {
-                if (err instanceof SyntaxError) setStatusText(result.statusText || 'Unable to understand what the SFCP web server said.');
+                if (err instanceof SyntaxError) setStatusText('Unable to understand what the ORCP web server said.');
                 else throw err;
             }
         } catch(err) {
@@ -79,24 +81,24 @@ export default function JoinTeamForm(props: IProps) {
     return <div className='mt-4'>
         <form ref={formRef} onInput={(e) => setFormValid(e.currentTarget.checkValidity())}>
             GitHub Email Address
-            <input type='email' required id='github-invite-email' name='email' placeholder='e.g. vasco@constellation.na' className='w-1/2 m-4 px-2' />
+            <input type='email' required id='github-invite-email' name='email' placeholder='e.g. adoringfan@imperialmail.septim' className='w-1/2 m-4 px-2' />
             <div className='mb-8'>
                 {teams?.map(t => teamSelector(t))}
             </div>
         </form>
-        <button disabled={!formIsValid || !formRef.current?.checkValidity() || !hasTeamsSelected || isSubmitting} onClick={submit}>Send Invitation</button>
+        <button disabled={!formIsValid || !formRef.current?.checkValidity() || !hasTeamsSelected || isSubmitting} onClick={submit}>{t('sendInvitation')}</button>
 
         {(()=>{
-            if (isSubmitting) return <p>Submitting...</p>
+            if (isSubmitting) return <p>{t('submitting')}</p>
             const isoString = resTime?.toISOString() ?? new Date().toISOString()
             switch(statusCode) {
                 case null:
                     return null;
                 case 201:
-                    return <p>Invitation sent!</p>
+                    return <p>{t('invitationSent')}</p>
                 case 401:
                     return <>
-                        <p>An error has occurred. Please contact the site owner with the following information:</p>
+                        <p>{t('errorOccurred')}</p>
                         <p>Request failed at about {isoString} with error &quot;{statusText}&quot;.</p>
                     </>
                 case 403:

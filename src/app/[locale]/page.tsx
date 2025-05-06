@@ -14,8 +14,8 @@ const robo400 = Roboto({ weight: "400", subsets: ['latin'] })
 // Layout metadata sadly doesn't apply to routes at the same level so we have to manually add it here
 export const metadata: Metadata = {
   ...layoutMetadata,
-  title: 'Home | Starfield Community Patch',
-  description: 'The home of the Starfield Community Patch project.',
+  title: 'Home | Oblivion Remastered Community Patch',
+  description: 'The home of the Oblivion Remastered Community Patch project.',
 }
 
 export default function Home() {

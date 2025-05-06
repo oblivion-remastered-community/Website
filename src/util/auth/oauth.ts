@@ -3,6 +3,7 @@ import DiscordProvider from 'next-auth/providers/discord';
 import GitHubProvider from 'next-auth/providers/github';
 import NexusModsProvider from './providers/nexusmods';
 import { JWT } from 'next-auth/jwt';
+import {AdapterUser} from "next-auth/adapters";
 
 const OAuthProviders: NextAuthOptions = {
     providers: [
@@ -16,29 +17,34 @@ const OAuthProviders: NextAuthOptions = {
         // }),
         NexusModsProvider({
             clientId: process.env.NEXUSMODS_ID!,
-            clientSecret: process.env.NEXUSMODS_SECRET!
-        })   
+            clientSecret: process.env.NEXUSMODS_SECRET!,
+        })
     ],
     secret: process.env.NEXTAUTH_SECRET,
     callbacks: {
-        // async jwt(params: { 
-        //     token: any,
-        //     user: any,
-        //     account: any,
-        //     profile?: any,
-        //     trigger?: string,
-        //     isNewUser?: boolean,
-        //     session?: any
-        //  }): Promise<any> {
-            
-        //     if (params.account?.accessToken) {
-        //         params.token.accessToken = params.account?.accessToken
-        //         console.log('Account token', { access: params.account.accessToken, token: params.token })
-        //     }
-        //     // else console.log('JWT CALLBACK', params);
-        //     return params.token
-        // },
-        async session(params: { session: Session, token: JWT }): Promise<any> {
+        async jwt(params: {
+            token: any,
+            user: any,
+            account: any,
+            profile?: any,
+            trigger?: string,
+            isNewUser?: boolean,
+            session?: any
+         }): Promise<any> {
+
+            if (params.account?.accessToken) {
+                params.token.accessToken = params.account?.accessToken
+                console.log('Account token', { access: params.account.accessToken, token: params.token })
+            }
+
+            if (params.account && params.user) {
+                params.token.provider = params.account.provider
+            }
+
+            // else console.log('JWT CALLBACK', params);
+            return params.token
+        },
+        async session(params: { session: Session, token: JWT, user: AdapterUser }): Promise<any> {
             // console.log('Session callback', params);
             return { id: params.token.sub, ...params.session};
         }

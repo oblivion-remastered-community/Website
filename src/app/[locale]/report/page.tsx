@@ -7,7 +7,7 @@ import CountDownTimer from '@/components/countdown/countdownTimer'
 
 export const metadata: Metadata = {
     title: 'Report an Issue',
-    description: 'Report a bug to the Starfield Community Patch team for review and fixing. Only issues with the base game will be accepted.',
+    description: 'Report a bug to the Oblivion Remastered Community Patch team for review and fixing. Only issues with the base game will be accepted.',
   }
 
 const orb = Orbitron({ subsets: ['latin'] })
@@ -26,7 +26,7 @@ export default async function ReportPage() {
             <Suspense fallback={<p>Loading...</p>}>
                 {(!showCountdown || !isProduction) && <ReportWizard repo={repoInfo} />}
                 {showCountdown && <div className='text-center border-2 border-black p-4'>
-                    <h2>Starfield launches in:</h2>
+                    <h2>Oblivion Remastered launches in:</h2>
                     <CountDownTimer date={1693526400000} />
                     <p>Come back once you&#39;ve played the game to report issues!</p>
                 </div>}

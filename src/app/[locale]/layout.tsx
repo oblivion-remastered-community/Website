@@ -9,12 +9,12 @@ import {kingthingsPetrockFont} from "@/fonts/KingthingsPetrock";
 
 export const metadata: Metadata = {
     title: {
-        default: 'Unknown Page | Starfield Community Patch',
-        template: '%s | Starfield Community Patch',
+        default: 'Oblivion Community Patch',
+        template: '%s | Oblivion Community Patch',
     },
-    category: 'Starfield,Modding,Video Games',
-    classification: 'The Starfield Community Patch is a community-driven and open-source project to fix bugs in Bethesda\'s Starfield.',
-    creator: 'Starfield Community Patch Team',
+    category: 'Oblivion,Modding,Video Games',
+    classification: 'The Oblivion Community Patch is a community-driven and open-source project to fix bugs in Bethesda\'s Oblivion.',
+    creator: 'Oblivion Community Patch Team',
     colorScheme: 'only light',
     formatDetection: {
         address: false,
@@ -30,12 +30,12 @@ export const metadata: Metadata = {
         sizes: '16x16,32x32,48x48',
         type: 'image/x-icon',
     }],
-    keywords: ['Starfield', ''],
-    metadataBase: (()=>{try{ return new URL(new URL(process.env.NEXTAUTH_URL!).origin) } catch { return new URL('https://starfieldpatch.dev') }})(),
+    keywords: ['Oblivion', ''],
+    metadataBase: (()=>{try{ return new URL(new URL(process.env.NEXTAUTH_URL!).origin) } catch { return new URL('https://oblivionremasteredpatch.com') }})(),
     openGraph: {
         type: 'website',
         determiner: 'the',
-        siteName: 'Starfield Community Patch Website',
+        siteName: 'Oblivion Community Patch Website',
     },
     twitter: {
         card: 'summary',

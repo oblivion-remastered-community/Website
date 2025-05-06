@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { IGitHubPageInfo, gitHubGQL } from "./common";
+import {IGitHubPageInfo, gitHubGQL, getAppToken} from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 
 export interface IGitHubRepoResponse {
@@ -69,20 +69,19 @@ const repoQuery = (name: string, owner: string) => query({
 })
 
 export async function getRepoAndLabels(): Promise<IGitHubRepoResponse> {
-    const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
+    const { GITHUB_OWNER, GITHUB_NAME } = process.env;
 
-    if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+    if (!GITHUB_NAME || !GITHUB_OWNER) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
 
     const query = repoQuery(GITHUB_NAME, GITHUB_OWNER);
-
-    // console.log('repoandlabel query', query)
+    const token = await getAppToken()
 
     const result = await fetch(gitHubGQL, {
         method: 'POST',
         body: JSON.stringify(query),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: { revalidate: 60 }
     })

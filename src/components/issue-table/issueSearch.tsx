@@ -45,7 +45,7 @@ export default function IssueSearch(props: IProps) {
 }
 
 function buildSearchUrl(query?: string) {
-    const baseUrl = 'https://github.com/Starfield-Community-Patch/Starfield-Community-Patch/issues';
+    const baseUrl = 'https://github.com/oblivion-remastered-community/oblivion-remastered-community-patch/issues';
     const searchUrl = `${baseUrl}?q=is%3Aissue+is%3Aopen${query ? `+${encodeURI(query)}`: ''}`
     return searchUrl;
 }

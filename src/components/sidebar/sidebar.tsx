@@ -38,7 +38,7 @@ export default function Sidebar(props: ISidebarProps) {
             <Link href='/' onClick={() => toggleNav(false)}><NavButton icon={mdiEarth} label={t('home')} /></Link>
             <Link href='/mission' onClick={() => toggleNav(false)}><NavButton icon={mdiPaletteOutline} label={t('missionStatement')} /></Link>
             {/*<Link href='/download' onClick={() => toggleNav(false)}><NavButton icon={mdiDownload} label={t('download')} /></Link>*/}
-            <Link href='/changelog' onClick={() => toggleNav(false)}><NavButton icon={mdiHistory} label={'changelog'} /></Link>
+            {/*<Link href='/changelog' onClick={() => toggleNav(false)}><NavButton icon={mdiHistory} label={'changelog'} /></Link>*/}
             <hr />
             <Link href='/issues' onClick={() => toggleNav(false)}><NavButton icon={mdiListStatus} label={'issues'} /></Link>
             <Link href='/report' onClick={() => toggleNav(false)}><NavButton icon={mdiBug} label={t('report')} /></Link>

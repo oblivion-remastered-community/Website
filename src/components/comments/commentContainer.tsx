@@ -54,10 +54,11 @@ export default function CommentContainer({ id, number }: { id: string, number: n
                 </div>
             </Suspense>
             <hr />
-            <CommentInput 
-            issueId={id}
-            onSubmit={onSubmit}
-            />
+            {/* todo: re-enable when nexus setup */}
+            {/*<CommentInput */}
+            {/*issueId={id}*/}
+            {/*onSubmit={onSubmit}*/}
+            {/*/>*/}
         </div>
     )
 }

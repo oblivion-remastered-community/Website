@@ -45,5 +45,38 @@
     "manualInstallationInstructions": "To install the patch manually, extract the contents of ZIP file into the Oblivion Remastered Data folder (<code>Oblivion Remastered\\OblivionRemastered\\Content\\Dev\\ObvData\\Data</code>). To verify it is installed properly, check the Data subfolder includes <code>OblivionCommunityPatch.esp</code>.\nWith the files installed, next navigate to <code>Oblivion Remastered\\OblivionRemastered\\Content\\Dev\\ObvData\\Data</code> (you can paste this into the address bar of Windows Explorer) and locate the file plugins.txt. Open plugins.txt and add <code>* OblivionCommunityPatch.esp</code> below the main Oblivion plugin and any DLCs.\n",
     "xboxInstructions": "This mod can be downloaded from Bethesda.net when playing on Xbox. Simply head to &quot;Mods&quot; at the main menu, sign in and then search for \"Communtiy Patch\". Follow the prompts on the screen to install it into your game.",
     "xboxDisclaimer": "As of right now (and possibly forever) there is no mod support from Bethesda Game Studios or Virtuos. As a result, there is no way to upload mods for download on Xbox."
+  },
+  "JoinTeam": {
+    "header": "Join the Oblivion Remastered Community Patch Team!",
+    "formInstructions": "The ORCP operates out of GitHub. In order to join you'll need a GitHub account. If you don't have one you can register <githubLink>here</githubLink>.\nThe email address entered into the form below <b>must</b> match the one used for your GitHub account or you won't receive the invitation.\n",
+    "temporaryInstructions": "The ORCP is just getting started. Right now, if you're interested in joining the team join us in the <discordLink>Oblivion Remastered Modding Discord</discordLink> in the channel <channelLink>#community-patch</channelLink>!",
+    "lookingFor": "We're currently looking for people to do the following:",
+    "merger": "Facilitate merging pull requests with ESP data from other branches",
+    "developer": "Developers able to work in Construction Set or UE5 (or both!)",
+    "artist": "Artists able to fix issues with textures, materials, lighting, meshes etc.",
+    "tester": "Testers who can verify incoming issues, their fixes and facilitate issue management",
+    "submitting": "Submitting...",
+    "invitationSent": "Invitation Sent",
+    "sendInvitation": "Send Invitation",
+    "errorOccurred": "An error has occurred. Please contact the site owner with the following information:"
+  },
+  "Report": {
+    "title": "Title",
+    "titlePlaceholder": "e.g. Adoring Fan randomly flew into space",
+    "summary": "Summary",
+    "summaryPlaceholder": "Describe the issue as clearly and concisely as possible",
+    "details": "Details",
+    "detailsPlaceholder": "Provide any technical details such as item IDs, quest IDs and stage numbers",
+    "gameVersion": "Game Version",
+    "adoringFanTip": "You can learn how to find your game version by checking the bottom left corner of the game when on the pause menu.",
+    "language": "Language",
+    "newGameQuestion": "Have you recreated this issue on a new game?",
+    "yes": "Yes",
+    "no": "No",
+    "noNewGameWarning": "If you cannot explain how to recreate the issue from a new game, the community may not be able to identify and fix it.",
+    "stepsToReproduce": "What are the steps to recreate it?",
+    "back": "Back",
+    "next": "Next",
+    "usernameWarning": "<b>Please note:</b> In order to ensure reports can be followed up on, <b>we will put your Discord/Nexus Mods username at the bottom of the issue</b>. If you would prefer we did not do that, please report the issue in the #community-patch channel on our Discord and we will report it for you."
   }
 }

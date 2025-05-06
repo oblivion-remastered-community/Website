@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { gitHubGQL, IGitHubPageInfo } from "./common";
+import {getAppToken, gitHubGQL, IGitHubPageInfo} from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import getMultipleUsers, { INexusModsUser } from '../NexusMods/multiuserquery';
 
@@ -108,11 +108,12 @@ const issueComments = (id: number, name: string, owner: string, after?: string |
 })
 
 export async function getIssueComments(id: number, after?: string | null, before?: string | null): Promise<IGitHubCommentsResponse> {
-    const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
+    const { GITHUB_OWNER, GITHUB_NAME } = process.env;
 
-    if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+    if (!GITHUB_NAME || !GITHUB_OWNER) throw new ErrorWithHTTPCode(500, 'Request failed: Please contact the site owner.');
 
     const query = issueComments(id, GITHUB_NAME, GITHUB_OWNER, after, before);
+    const token = await getAppToken()
 
     // console.log(query)
 
@@ -123,7 +124,7 @@ export async function getIssueComments(id: number, after?: string | null, before
         body: JSON.stringify(query),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: { revalidate: 0 }
     })

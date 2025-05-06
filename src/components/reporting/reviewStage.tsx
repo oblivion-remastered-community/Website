@@ -6,6 +6,7 @@ import { ErrorWithHTTPCode } from "@/util/errors";
 import { useRouter } from "next/navigation";
 import { IGitHubAddIssueResponse } from "@/util/GitHub/create-issue";
 import { useState } from "react";
+import {useTranslations} from "next-intl";
 
 interface IReviewProps {
     body: IReportBody;
@@ -21,6 +22,7 @@ export default function ReviewStage(props: IReviewProps) {
     const router = useRouter()
     const [submitError, setSubmitError] = useState<Error | undefined>(undefined)
     const [submitting, setSubmitting] = useState<boolean>(false)
+    const t = useTranslations('Report')
 
     const md = buildMarkdown(body);
     const labels: (IGitHubLabel | undefined)[] = [platformLabel, ...dlcLabels, typeLabel]
@@ -58,6 +60,13 @@ export default function ReviewStage(props: IReviewProps) {
     return (
         <div>
             Here is a summary of your report. Once you are happy with it, you can submit it.
+
+            <div className='p-4 bg-stripe-orange my-4 border-2 border-black text-white'>
+                {t.rich('usernameWarning', {
+                    b: (chunks) => <b>{chunks}</b>
+                })}
+            </div>
+
             <div className="border-2 border-black p-4 m-4">
             <h2>{body.title}</h2>
             <hr/>

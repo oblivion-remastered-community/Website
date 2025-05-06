@@ -1,5 +1,5 @@
 import { query } from 'gql-query-builder';
-import { GitHubIssueFilter, IGitHubPageInfo, gitHubGQL } from "./common";
+import {GitHubIssueFilter, IGitHubPageInfo, gitHubGQL, getAppToken} from "./common";
 import { ErrorWithHTTPCode } from '../errors';
 import { IGitHubLabel } from './get-repo-labels';
 
@@ -150,11 +150,12 @@ const gitHubIssuesQuery = (name: string, owner: string, filters?: GitHubIssueFil
 
 
 export async function getIssueList(filters?: GitHubIssueFilter): Promise<IGitHubIssueResponse> {
-    const { GITHUB_TOKEN, GITHUB_OWNER, GITHUB_NAME } = process.env;
+    const { GITHUB_OWNER, GITHUB_NAME } = process.env;
 
-    if (!GITHUB_NAME || !GITHUB_OWNER || !GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
+    if (!GITHUB_NAME || !GITHUB_OWNER) throw new ErrorWithHTTPCode(500, 'Request failed: Please contact the site owner.');
 
     const gitHubQuery = gitHubIssuesQuery(GITHUB_NAME, GITHUB_OWNER, filters)
+    const token = await getAppToken()
 
     // console.log(gitHubQuery);
 
@@ -163,7 +164,7 @@ export async function getIssueList(filters?: GitHubIssueFilter): Promise<IGitHub
         body: JSON.stringify(gitHubQuery),
         headers: {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer ${GITHUB_TOKEN}`
+            'Authorization': `Bearer ${token}`
         },
         next: { revalidate: 0 }
     });

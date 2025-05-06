@@ -7,7 +7,7 @@ const contributors: IContributor[] = contributorList as IContributor[];
 
 export const metadata: Metadata = {
     title: 'Contributors',
-    description: 'The people who make the Starfield Community Patch possible.',
+    description: 'The people who make the Oblivion Remastered Community Patch possible.',
 }
 
 const orb = Orbitron({ subsets: ['latin'] })

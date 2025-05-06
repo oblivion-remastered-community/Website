@@ -98,7 +98,7 @@ export interface GitHubTeam {
     parent: any | null;
 }
 
-const getAppToken = async () => {
+export const getAppToken = async () => {
     const { GITHUB_APP_ID, GITHUB_PRIVATE_KEY, GITHUB_INSTALLATION_ID } = process.env;
 
     if (GITHUB_APP_ID && GITHUB_PRIVATE_KEY && GITHUB_INSTALLATION_ID) {

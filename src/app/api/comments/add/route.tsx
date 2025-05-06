@@ -6,49 +6,51 @@ import { getToken } from "next-auth/jwt"
 import OAuthProviders from '@/util/auth/oauth';
 import { revalidateTag } from 'next/cache';
 
-export async function POST(request: NextRequest) {
+// todo: re-enable when nexus figured out
 
-    const params = new URL(request.url).searchParams;
-    const body = await request.formData()
-    let comment: string = body.get('comment') as string;
-
-    const id: string | null = params.get('issue_id');
-    const number: number | null = parseInt(params.get('issue_number') ?? '-1');
-
-    if (!id) return NextResponse.json({}, { status: 400, statusText: 'Bad Request - Invalid Comment ID' })
-    if (!comment || comment === '') return NextResponse.json({}, { status: 422, statusText: 'Bad Request - Invalid Comment Body' })
-
-    // if (process.env.NODE_ENV === 'production') return NextResponse.json({}, { status: 403, statusText: 'This feature is currently unavailable.' })
-
-    // Check OAuth Credentials 
-    const session = await getServerSession(OAuthProviders);
-    if (!session) return NextResponse.json({}, { status: 403, statusText: 'Forbidden - You must be logged in to Nexus Mods' })
-    // console.log('Create comment session', session);
-
-    const jwt = await getToken({ req: request });
-    // console.log('Create comment JWT', jwt);
-
-    const nexusModsId = jwt?.sub || (session as any)?.id;
-
-    if (!nexusModsId) {
-        console.error('Unable to determine your Nexus Mods account when posting a comment', {jwt, session});
-        return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' })
-    };
-
-    // Append the comment with the Nexus Mods ID
-    comment = `${comment}\n\n<!-- NexusMods:${nexusModsId} -->`;
-
-
-    // Submit the comment to GitHub    
-    try {
-        const reference = (Math.random() + 1).toString(36).substring(7);
-        const sendComment = await addIssueComment(id, comment, reference);
-        if (!isNaN(number)) revalidateTag(`${number}_comments`)
-        return NextResponse.json(sendComment)
-    }
-    catch(err) {
-        console.log('Error', err)
-        const httpErr = err as ErrorWithHTTPCode;
-        return NextResponse.json({}, { status: httpErr.code, statusText: httpErr.message })
-    }
-}
+// export async function POST(request: NextRequest) {
+//
+//     const params = new URL(request.url).searchParams;
+//     const body = await request.formData()
+//     let comment: string = body.get('comment') as string;
+//
+//     const id: string | null = params.get('issue_id');
+//     const number: number | null = parseInt(params.get('issue_number') ?? '-1');
+//
+//     if (!id) return NextResponse.json({}, { status: 400, statusText: 'Bad Request - Invalid Comment ID' })
+//     if (!comment || comment === '') return NextResponse.json({}, { status: 422, statusText: 'Bad Request - Invalid Comment Body' })
+//
+//     // if (process.env.NODE_ENV === 'production') return NextResponse.json({}, { status: 403, statusText: 'This feature is currently unavailable.' })
+//
+//     // Check OAuth Credentials
+//     const session = await getServerSession(OAuthProviders);
+//     if (!session) return NextResponse.json({}, { status: 403, statusText: 'Forbidden - You must be logged in to Nexus Mods' })
+//     // console.log('Create comment session', session);
+//
+//     const jwt = await getToken({ req: request });
+//     // console.log('Create comment JWT', jwt);
+//
+//     const nexusModsId = jwt?.sub || (session as any)?.id;
+//
+//     if (!nexusModsId) {
+//         console.error('Unable to determine your Nexus Mods account when posting a comment', {jwt, session});
+//         return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' })
+//     };
+//
+//     // Append the comment with the Nexus Mods ID
+//     comment = `${comment}\n\n<!-- NexusMods:${nexusModsId} -->`;
+//
+//
+//     // Submit the comment to GitHub
+//     try {
+//         const reference = (Math.random() + 1).toString(36).substring(7);
+//         const sendComment = await addIssueComment(id, comment, reference);
+//         if (!isNaN(number)) revalidateTag(`${number}_comments`)
+//         return NextResponse.json(sendComment)
+//     }
+//     catch(err) {
+//         console.log('Error', err)
+//         const httpErr = err as ErrorWithHTTPCode;
+//         return NextResponse.json({}, { status: httpErr.code, statusText: httpErr.message })
+//     }
+// }

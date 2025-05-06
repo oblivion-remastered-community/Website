@@ -1,27 +1,38 @@
 import { Orbitron } from 'next/font/google'
 import type { Metadata } from 'next'
 import JoinTeamWrapper from '@/components/join-team/joinTeamWrapper'
+import {getTranslations} from "next-intl/server";
 
 export const metadata: Metadata = {
     title: 'Join the team',
-    description: 'Become a part of the Starfield Community Patch Team by joining our team on GitHub.'
+    description: 'Become a part of the Oblivion Remastered Community Patch Team by joining our team on GitHub.'
 }
 
-//export const dynamic = 'force-dynamic'
-//export const revalidate = 86400 // 24 hours, i.e. 24 * 60 * 60 seconds
-
-const orb = Orbitron({ subsets: ['latin'] })
-
 export default async function JoinPage() {
-
-    // if (process.env.NODE_ENV === 'production') return <p>Coming soon!</p>
+    const t = await getTranslations('JoinTeam')
 
     return <div>
-        <h1>Join the Starfield Community Patch Team!</h1>
+        <h1>{t('header')}</h1>
         <div>
-            The SFCP operates out of GitHub. In order to join you&lsquo;ll need a GitHub account. If you don&lsquo;t have one you can register <a href='https://github.com/join' target='_blank'>here</a>.
-            The email address entered into the form below <b>must</b> match the one used for your GitHub account or you won&lsquo;t receive the invitation.
+            {t.rich('temporaryInstructions', {
+                discordLink: (chunks) => <a href='https://discord.gg/d3TRtvJ9fD' target='_blank'>{chunks}</a>,
+                channelLink: (chunks) => <a href='https://discord.com/channels/1364356029932109976/1368788918451048498'>{chunks}</a>
+            })}
+            <br />
+            <br />
+            <p>{t('lookingFor')}</p>
+            <ol>
+                <li>{t('merger')}</li>
+                <li>{t('developer')}</li>
+                <li>{t('artist')}</li>
+                <li>{t('tester')}</li>
+            </ol>
+            {/* Enable once we're ready to take github users */}
+            {/*{t.rich('formInstructions', {*/}
+            {/*    githubLink: (chunks) => <a href='https://github.com/join' target='_blank'>{chunks}</a>,*/}
+            {/*    b: (chunks) => <b>{chunks}</b>*/}
+            {/*})}*/}
         </div>
-        <JoinTeamWrapper />
+        {/*<JoinTeamWrapper />*/}
     </div>
 }

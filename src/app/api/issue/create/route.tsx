@@ -28,15 +28,26 @@ export async function POST(request: NextRequest) {
 
     const jwt = await getToken({ req: request });
 
-    const nexusModsId = jwt?.sub || (session as any)?.id;
+    if (jwt?.provider === 'discord') {
+        const username = jwt.name
 
-    if (!nexusModsId) {
-        console.error('Unable to determine your Nexus Mods account when posting an issue', {jwt, session});
-        return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' });
+        if (!username) {
+            return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Discord account. Please try signing out and back in.' })
+        }
+
+        body = `${body}\n\n\nDiscord Username: @${username}`
+    } else {
+        const nexusModsId = jwt?.sub || (session as any)?.id;
+
+        if (!nexusModsId) {
+            console.error('Unable to determine your Nexus Mods account when posting an issue', {jwt, session});
+            return NextResponse.json({}, { status: 500, statusText: 'Unable to determine your Nexus Mods account. Please try signing out and back in.' });
+        }
+
+        // Append the issue with the Nexus Mods ID
+        body = `${body}\n\n<!-- NexusMods:${nexusModsId} -->`;
     }
 
-    // Append the issue with the Nexus Mods ID
-    body = `${body}\n\n<!-- NexusMods:${nexusModsId} -->`;
 
      // Submit the comment to GitHub    
      try {

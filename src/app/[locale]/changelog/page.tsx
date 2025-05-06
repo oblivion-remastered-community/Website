@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 
 export const metadata: Metadata = {
     title: 'Changelog',
-    description: 'Things change, and so does the Starfield Community Patch. See what\'s new here!',
+    description: 'Things change, and so does the Oblivion Remastered Community Patch. See what\'s new here!',
 }
 
 const orb = Orbitron({ subsets: ['latin'] })

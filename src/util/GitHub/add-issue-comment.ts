@@ -39,10 +39,6 @@ const addCommentQuery = (id: string, body: string, reference: string) => mutatio
 }, undefined, { operationName: 'addIssueComment' });
 
 export async function addIssueComment(commentId: string, body: string, reference: string): Promise<any> {
-    const { GITHUB_TOKEN } = process.env;
-
-    if (!GITHUB_TOKEN) throw new ErrorWithHTTPCode(500, 'Request failed: Missing secrets, please contact the site owner.');
-
     const query = addCommentQuery(commentId, body, reference);
 
     try {
