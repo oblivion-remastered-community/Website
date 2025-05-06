@@ -35,17 +35,19 @@ export default async function JoinPage() {
             {/*})}*/}
         </div>
 
-        <div className={'grid justify-items-center'}>
-            <button className='lg:w-1/2 sm:w-full discord'>
-                <Image
-                    src={'/Discord-Symbol-White.svg'}
-                    alt={t('github')}
-                    width={24}
-                    height={24}
-                    className='inline mr-2'
-                />
-                {t('joinUsOnDiscord')}
-            </button>
+        <div className="flex justify-center w-full">
+            <a href='https://discord.gg/d3TRtvJ9fD' target='_blank'>
+                <button className='discord w-full sm:w-auto'>
+                    <Image
+                        src={'/Discord-Symbol-White.svg'}
+                        alt={t('github')}
+                        width={24}
+                        height={24}
+                        className='inline mr-2'
+                    />
+                    {t('joinUsOnDiscord')}
+                </button>
+            </a>
         </div>
         {/*<JoinTeamWrapper />*/}
     </div>
