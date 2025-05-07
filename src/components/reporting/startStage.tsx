@@ -17,8 +17,8 @@ export default function StartStage(props: IStageProps) {
                 </ul>
             </AdoringFanTip>
             <div className='text-center my-4'>
-                <button onClick={props.next}>{props.status !== 'authenticated' ? 'Sign In to Nexus Mods' : 'Start reporting'}</button>
-                <div>{props.status !== 'authenticated' && `You must be signed in to a Nexus Mods account to submit a report.`}</div>
+                <button onClick={props.next}>{props.status !== 'authenticated' ? 'Sign In' : 'Start reporting'}</button>
+                <div>{props.status !== 'authenticated' && `You must be signed in to a Discord account to submit a report.`}</div>
             </div>
         </div>
     )

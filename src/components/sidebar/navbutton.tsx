@@ -1,9 +1,10 @@
 import { Icon } from '@mdi/react'
 import { Orbitron } from 'next/font/google'
+import { Noto_Serif } from 'next/font/google'
 import Image from 'next/image'
 import {mdiSword} from "@mdi/js";
 
-const orb = Orbitron({ subsets: ['latin'] })
+const notoSerif = Noto_Serif({subsets: ['latin']})
 
 interface IProps {
     icon?: string;
@@ -27,7 +28,7 @@ export default function NavButton(props: IProps) {
             /> 
             : null}
             {icon ? <Icon path={icon || ''} size={1} className='inline mr-2' /> : null }
-            <p className={`${orb.className} inline`}>{label}</p>
+            <p className={`${notoSerif.className} inline`}>{label}</p>
             </div>
             <div className='grid grid-rows-1 overflow-clip nav-stripes h-max min-w-[12px]'>
                 <Icon path={mdiSword} size={1}

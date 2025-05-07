@@ -6,7 +6,7 @@ import { useRouter } from 'next/navigation'
 import RelativeDateText from "../relativeDateText";
 import IssueLabel from "../issueLabel";
 import Image from "next/image";
-import Star from './star.webp';
+import Star from './sm_orcp_icon.png'
 
 interface IRowProps {
     i: IGitHubIssueList

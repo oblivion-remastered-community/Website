@@ -13,10 +13,10 @@ export const metadata: Metadata = {
 export default function IssuePage() {
     return (
         <div>
-            {/*<h1>Community Patch Issue List</h1>*/}
-            {/*<Suspense>*/}
-            {/*<IssueTable />*/}
-            {/*</Suspense>*/}
+            <h1>Community Patch Issue List</h1>
+            <Suspense>
+            <IssueTable />
+            </Suspense>
         </div>
     )
 }

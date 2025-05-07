@@ -24,7 +24,7 @@ export async function POST(request: NextRequest) {
 
     // Check OAuth Credentials 
     const session = await getServerSession(OAuthProviders);
-    if (!session) return NextResponse.json({}, { status: 403, statusText: 'Forbidden - You must be logged in to Nexus Mods' })
+    if (!session) return NextResponse.json({}, { status: 403, statusText: 'Forbidden - You must be logged in' })
 
     const jwt = await getToken({ req: request });
 

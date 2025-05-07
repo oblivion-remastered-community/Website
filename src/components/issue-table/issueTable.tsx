@@ -66,7 +66,7 @@ export default function IssueTable() {
         <div>
             <div className='grid grid-cols-2 my-4 border-b-2 select-none border-black w-full text-center'>
                 <div className={`${tab === 'all' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setAllIssues}>All Issues</div>
-                <div className={`${tab === 'mine' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setMyIssues} title='Not implemented'>My Issues</div>
+                {/*<div className={`${tab === 'mine' ? 'bg-slate-300' : null} hover:bg-slate-300 px-4 py-2`} onClick={setMyIssues} title='Not implemented'>My Issues</div>*/}
             </div>
             <IssueSearch onSubmit={onSubmitSearch} />
             <table className='table-fixed w-full border-collapse caption-bottom border-spacing-x-2'>
