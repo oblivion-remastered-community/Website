@@ -106,7 +106,7 @@ export default async function IssueView(props: IIssueViewProps) {
                 </div>
                 <div className='col-start-3'><RelativeDate date={issue?.updatedAt ?? 0} icon={mdiUpdate} label={'Updated'} /></div>
             </div>
-            {/*<CommentContainer id={issue?.id!} number={issueId}  />*/}
+            <CommentContainer id={issue?.id!} number={issueId}  />
         </div>
     )
 }
