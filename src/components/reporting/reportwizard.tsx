@@ -44,6 +44,7 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
     const [ stage, setStage ] = useState<ReportStage>('start');
     const [ body, setBody ] = useState<IReportBody>(defaultBody);
     const [ dlcs, setDlcs ] = useState<Set<IGitHubLabel>>(new Set())
+    const [ severity, setSeverity ] = useState<IGitHubLabel | undefined>(undefined);
 
     const nextStage = () => {
         window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
@@ -90,11 +91,11 @@ export default function ReportWizard(props: { repo: IGitHubRepoResponse }) {
             break;
         }
         case 'questions' : {
-            page = <QuestionStage next={nextStage} prev={prevStage} body={body} setBody={setBody} />
+            page = <QuestionStage next={nextStage} prev={prevStage} body={body} setBody={setBody} labels={repo.data?.repository.labels.nodes} setSeverity={setSeverity} severity={severity} />
             break;
         }
         case 'review' : {
-            page = <ReviewStage prev={prevStage} body={body} typeLabel={type} platformLabel={platform} dlcLabels={dlcs} repoId={repo.data?.repository.id!} />
+            page = <ReviewStage prev={prevStage} body={body} typeLabel={type} platformLabel={platform} dlcLabels={dlcs} repoId={repo.data?.repository.id!} severityLabel={severity} />
             break;
         }
         default: {

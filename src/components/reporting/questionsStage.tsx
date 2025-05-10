@@ -3,14 +3,19 @@ import AdoringFanTip from "./adoringFanTip";
 import { ChangeEvent, FormEvent } from "react";
 import { IReportBody } from "./reportwizard";
 import {useTranslations} from "next-intl";
+import {IGitHubLabel} from "@/util/GitHub/get-repo-labels";
+import RadioButtonOption from "@/components/reporting/radioOption";
 
 const orb = Orbitron({ subsets: ['latin'] })
 
 interface IStageProps {
-    next: () => void;
-    prev: () => void;
-    setBody: (newBody: IReportBody) => void;
-    body: IReportBody;
+    next: () => void
+    prev: () => void
+    setBody: (newBody: IReportBody) => void
+    body: IReportBody
+    labels?: IGitHubLabel[]
+    severity: IGitHubLabel | undefined
+    setSeverity: (severityLabel: IGitHubLabel | undefined) => void
 }
 
 const gameLocales = [
@@ -27,12 +32,12 @@ const gameLocales = [
 ];
 
 export default function QuestionStage(props: IStageProps) {
-    const { next, prev, body, setBody } = props;
+    const { next, prev, body, setBody, labels, severity, setSeverity } = props;
     const t = useTranslations('Report')
     
     const isBodyComplete = () => {
         let result = true
-        if (!body.title || !body.summary || !body.questions) result = false;
+        if (!body.title || !body.summary || !body.questions || !severity) result = false;
         const qs = ['Game Version', 'New Game', 'Reproduction Steps'];
         for (const q of qs) {
             if (!body.questions?.[q] || !body.questions[q].answer) {
@@ -77,6 +82,11 @@ export default function QuestionStage(props: IStageProps) {
             <b>Warning: </b>{text}
         </div>
     )
+
+    const severityOptions = labels?.filter(label => label.name.startsWith('Severity'))
+    const severityRadioOptions = severityOptions?.map(label => (
+        <RadioButtonOption selected={severity} key={label.id} option={label} allOptions={severityOptions ?? []} setCb={setSeverity} name={label.name.replace('Severity: ', '')} />
+    ))
 
     return (
         <div>
@@ -158,6 +168,10 @@ export default function QuestionStage(props: IStageProps) {
                     onChange={(e) => updateQuestion(e, 'Reproduction Steps', 30)} 
                     value={body.questions?.['Reproduction Steps']?.answer} 
                 />
+                </div>
+                <div className="my-4">
+                    <h2>{t('severity')}</h2>
+                    {severityRadioOptions}
                 </div>
             </div>
             <div className="flex flex-row justify-between my-2 mx-8">

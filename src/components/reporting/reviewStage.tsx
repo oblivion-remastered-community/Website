@@ -13,19 +13,20 @@ interface IReviewProps {
     platformLabel?: IGitHubLabel
     typeLabel?: IGitHubLabel
     dlcLabels: Set<IGitHubLabel>
-    prev: () => void;
-    repoId: string;
+    prev: () => void
+    repoId: string
+    severityLabel?: IGitHubLabel
 }
 
 export default function ReviewStage(props: IReviewProps) {
-    const {prev, body, platformLabel, typeLabel, dlcLabels, repoId } = props;
+    const {prev, body, platformLabel, typeLabel, dlcLabels, repoId, severityLabel } = props;
     const router = useRouter()
     const [submitError, setSubmitError] = useState<Error | undefined>(undefined)
     const [submitting, setSubmitting] = useState<boolean>(false)
     const t = useTranslations('Report')
 
     const md = buildMarkdown(body);
-    const labels: (IGitHubLabel | undefined)[] = [platformLabel, ...dlcLabels, typeLabel]
+    const labels: (IGitHubLabel | undefined)[] = [platformLabel, ...dlcLabels, typeLabel, severityLabel]
 
     const submitIssue = async () => {
         setSubmitError(undefined)
