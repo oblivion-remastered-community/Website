@@ -78,6 +78,7 @@
     "stepsToReproduce": "What are the steps to recreate it?",
     "back": "Back",
     "next": "Next",
-    "usernameWarning": "<b>Please note:</b> In order to ensure reports can be followed up on, <b>we will put your Discord/Nexus Mods username at the bottom of the issue</b>. If you would prefer we did not do that, please report the issue in the #community-patch channel on our Discord and we will report it for you."
+    "usernameWarning": "<b>Please note:</b> In order to ensure reports can be followed up on, <b>we will put your Discord/Nexus Mods username at the bottom of the issue</b>. If you would prefer we did not do that, please report the issue in the #community-patch channel on our Discord and we will report it for you.",
+    "severity": "What is the severity of the bug?"
   }
 }
